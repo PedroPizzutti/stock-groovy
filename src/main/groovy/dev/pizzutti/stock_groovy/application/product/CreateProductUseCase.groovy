@@ -1,6 +1,7 @@
 package dev.pizzutti.stock_groovy.application.product
 
 import dev.pizzutti.stock_groovy.domain.product.Product
+import dev.pizzutti.stock_groovy.domain.product.ProductException
 import dev.pizzutti.stock_groovy.domain.product.ProductRepository
 
 class CreateProductUseCase {
@@ -13,7 +14,7 @@ class CreateProductUseCase {
 
     Product execute(Product product) {
         if (repository.findByCodBar(product.codBar).isPresent()) {
-            throw new RuntimeException("Product with 'codBar' '${product.codBar}' already exists")
+            throw new ProductException(["Product with 'codBar' '${product.codBar}' already exists"])
         }
         repository.save(product)
     }

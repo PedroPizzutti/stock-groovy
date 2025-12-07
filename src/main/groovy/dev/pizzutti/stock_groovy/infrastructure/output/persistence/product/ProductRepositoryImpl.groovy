@@ -16,26 +16,26 @@ class ProductRepositoryImpl implements ProductRepository {
     @Override
     Product save(Product product) {
         def jpaEntity = JpaEntityProduct.fromDomain(product)
-        this.jpaRepository.save(jpaEntity).toDomain()
+        jpaRepository.save(jpaEntity).toDomain()
     }
 
     @Override
     Optional<Product> findById(UUID id) {
-        this.jpaRepository.findById(id).map {it.toDomain()}
+        jpaRepository.findById(id).map {it.toDomain()}
     }
 
     @Override
     Optional<Product> findByCodBar(String codBar) {
-        this.jpaRepository.findByCodBar(codBar).map {it.toDomain()}
+        jpaRepository.findByCodBar(codBar).map {it.toDomain()}
     }
 
     @Override
     List<Product> findAll() {
-        this.jpaRepository.findAll().collect({it.toDomain()})
+        jpaRepository.findAll().collect({it.toDomain()})
     }
 
     @Override
     void delete(UUID id) {
-        this.jpaRepository.deleteById(id)
+        jpaRepository.deleteById(id)
     }
 }
