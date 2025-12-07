@@ -1,6 +1,7 @@
 package dev.pizzutti.stock_groovy.application.product
 
 import dev.pizzutti.stock_groovy.domain.product.Product
+import dev.pizzutti.stock_groovy.domain.product.ProductException
 import dev.pizzutti.stock_groovy.domain.product.ProductRepository
 
 class RetrieveProductUseCase {
@@ -12,7 +13,7 @@ class RetrieveProductUseCase {
     }
 
     Product execute(UUID id) {
-        repository.findById(id).orElseThrow { new RuntimeException("Product with id '${id}' not found") }
+        repository.findById(id).orElseThrow { new ProductException(["Product with id '${id}' not found"]) }
     }
 
 }
