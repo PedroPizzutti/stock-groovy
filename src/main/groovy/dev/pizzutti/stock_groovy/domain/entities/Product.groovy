@@ -16,7 +16,16 @@ class Product {
 
     Product(UUID id = null, String name, String codBar, String storageArea, Long quantity,
             LocalDateTime createdAt = null) {
+        validateCreate(name, codBar, storageArea, quantity)
+        this.id = id ?: UUID.randomUUID()
+        this.name = name
+        this.codBar = codBar
+        this.storageArea = storageArea
+        this.quantity = quantity
+        this.createdAt = createdAt ?: LocalDateTime.now()
+    }
 
+    private void validateCreate(String name, String codBar, String storageArea, Long quantity) {
         List<String> errors = []
 
         if (name.length() <= 3) {
@@ -33,12 +42,5 @@ class Product {
         }
 
         ProductException.throwIfAny(errors)
-
-        this.id = id ?: UUID.randomUUID()
-        this.name = name
-        this.codBar = codBar
-        this.storageArea = storageArea
-        this.quantity = quantity
-        this.createdAt = createdAt ?: LocalDateTime.now()
     }
 }
