@@ -1,4 +1,4 @@
-package dev.pizzutti.stock_groovy.infrastructure.adapters.persistence.jpa.entities
+package dev.pizzutti.stock_groovy.infrastructure.adapters.output.persistence.jpa.entities
 
 import dev.pizzutti.stock_groovy.domain.entities.Product
 import groovy.transform.Canonical
