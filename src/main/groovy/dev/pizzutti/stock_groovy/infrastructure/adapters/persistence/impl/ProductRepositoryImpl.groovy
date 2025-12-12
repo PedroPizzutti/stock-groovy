@@ -1,10 +1,12 @@
-package dev.pizzutti.stock_groovy.infrastructure.output.persistence.product
+package dev.pizzutti.stock_groovy.infrastructure.adapters.persistence.impl
 
-import dev.pizzutti.stock_groovy.domain.product.Product
-import dev.pizzutti.stock_groovy.domain.product.ProductRepository
-import org.springframework.stereotype.Service
+import dev.pizzutti.stock_groovy.domain.entities.Product
+import dev.pizzutti.stock_groovy.domain.ports.output.ProductRepository
+import dev.pizzutti.stock_groovy.infrastructure.adapters.persistence.jpa.entities.JpaEntityProduct
+import dev.pizzutti.stock_groovy.infrastructure.adapters.persistence.jpa.repositories.JpaRepositoryProduct
+import org.springframework.stereotype.Component
 
-@Service
+@Component
 class ProductRepositoryImpl implements ProductRepository {
 
     private final JpaRepositoryProduct jpaRepository;

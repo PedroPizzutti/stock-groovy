@@ -1,4 +1,4 @@
-package dev.pizzutti.stock_groovy.infrastructure.input.rest.exception
+package dev.pizzutti.stock_groovy.infrastructure.adapters.input.rest.exception
 
 import dev.pizzutti.stock_groovy.domain.exception.DomainException
 import jakarta.servlet.http.HttpServletRequest

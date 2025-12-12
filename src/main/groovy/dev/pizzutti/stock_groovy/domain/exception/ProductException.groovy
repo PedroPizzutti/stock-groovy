@@ -1,6 +1,4 @@
-package dev.pizzutti.stock_groovy.domain.product
-
-import dev.pizzutti.stock_groovy.domain.exception.DomainException
+package dev.pizzutti.stock_groovy.domain.exception
 
 class ProductException extends DomainException {
 

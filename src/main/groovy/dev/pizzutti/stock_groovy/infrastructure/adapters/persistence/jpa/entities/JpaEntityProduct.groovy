@@ -1,6 +1,6 @@
-package dev.pizzutti.stock_groovy.infrastructure.output.persistence.product
+package dev.pizzutti.stock_groovy.infrastructure.adapters.persistence.jpa.entities
 
-import dev.pizzutti.stock_groovy.domain.product.Product
+import dev.pizzutti.stock_groovy.domain.entities.Product
 import groovy.transform.Canonical
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
@@ -26,7 +26,7 @@ class JpaEntityProduct {
     @Column(name = "storage_area", nullable = false, length = 10)
     String storageArea
 
-    @Column(nullable = false)
+    @Column(name = "quantity", nullable = false)
     Long quantity
 
     @Column(name = "created_at", nullable = false, updatable = false)

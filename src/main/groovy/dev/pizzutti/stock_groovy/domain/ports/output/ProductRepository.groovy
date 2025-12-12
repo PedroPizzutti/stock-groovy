@@ -1,4 +1,6 @@
-package dev.pizzutti.stock_groovy.domain.product
+package dev.pizzutti.stock_groovy.domain.ports.output
+
+import dev.pizzutti.stock_groovy.domain.entities.Product
 
 interface ProductRepository {
     Product save(Product product)

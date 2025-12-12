@@ -1,5 +1,6 @@
-package dev.pizzutti.stock_groovy.domain.product
+package dev.pizzutti.stock_groovy.domain.entities
 
+import dev.pizzutti.stock_groovy.domain.exception.ProductException
 import groovy.transform.Canonical
 
 import java.time.LocalDateTime

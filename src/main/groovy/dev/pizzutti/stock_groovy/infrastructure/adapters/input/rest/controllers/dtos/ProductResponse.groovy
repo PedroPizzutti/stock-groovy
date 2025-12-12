@@ -1,6 +1,6 @@
-package dev.pizzutti.stock_groovy.infrastructure.input.rest.product
+package dev.pizzutti.stock_groovy.infrastructure.adapters.input.rest.controllers.dtos
 
-import dev.pizzutti.stock_groovy.domain.product.Product
+import dev.pizzutti.stock_groovy.domain.entities.Product
 
 import java.time.LocalDateTime
 
