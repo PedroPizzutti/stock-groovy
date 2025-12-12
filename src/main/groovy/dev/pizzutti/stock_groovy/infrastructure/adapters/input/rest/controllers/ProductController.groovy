@@ -47,8 +47,10 @@ class ProductController {
 
     @GetMapping
     ResponseEntity<List<ProductResponse>> list() {
-        def products = productService.listAll().collect { ProductResponse.fromDomain(it) }
-        ResponseEntity.status(200).body(products)
+        def products = productService.listAll()
+        def productsResponse = new ArrayList<ProductResponse>()
+        productsResponse.addAll(products.collect({ProductResponse.fromDomain(it)}))
+        ResponseEntity.ok(productsResponse)
     }
 
     @GetMapping("/{productId}")

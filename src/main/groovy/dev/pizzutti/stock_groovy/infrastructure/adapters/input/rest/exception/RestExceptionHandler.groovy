@@ -5,14 +5,15 @@ import jakarta.servlet.http.HttpServletRequest
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
+import org.springframework.web.bind.annotation.RestControllerAdvice
 
 import java.time.LocalDateTime
 
-@ControllerAdvice
+@RestControllerAdvice
 class RestExceptionHandler {
 
     @ExceptionHandler(DomainException.class)
-    public ResponseEntity<RestExceptionDto> handlerDomain( DomainException exception, HttpServletRequest request) {
+    ResponseEntity<RestExceptionDto> handlerDomain( DomainException exception, HttpServletRequest request) {
         def dto = new RestExceptionDto(
                 exception.getMessage(),
                 request.requestURI,
@@ -23,7 +24,7 @@ class RestExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<RestExceptionDto> handlerUnknown( Exception exception, HttpServletRequest request) {
+    ResponseEntity<RestExceptionDto> handlerUnknown( Exception exception, HttpServletRequest request) {
         def dto = new RestExceptionDto(
                 "Unknown error occurred",
                 request.requestURI,

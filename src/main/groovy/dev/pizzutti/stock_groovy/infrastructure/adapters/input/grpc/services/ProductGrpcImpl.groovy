@@ -10,7 +10,6 @@ import dev.pizzutti.stock_groovy.infrastructure.input.grpc.proto.ListProductsPro
 import dev.pizzutti.stock_groovy.infrastructure.input.grpc.proto.ProductProtoResponse
 import dev.pizzutti.stock_groovy.infrastructure.input.grpc.proto.ProductServiceGrpc
 import dev.pizzutti.stock_groovy.infrastructure.input.grpc.proto.UpdateProductProtoRequest
-import io.grpc.Status
 import io.grpc.stub.StreamObserver
 import org.springframework.stereotype.Service
 
@@ -62,7 +61,7 @@ class ProductGrpcImpl extends ProductServiceGrpc.ProductServiceImplBase {
     void list(Empty request, StreamObserver<ListProductsProtoResponse> responseObserver) {
         def products = productService.listAll()
         def protoList = ListProductsProtoResponse.newBuilder()
-                .addAllProducts {products.collect { toProductProtoResponse(it) }}
+                .addAllProducts(products.collect{ toProductProtoResponse(it)})
                 .build()
         responseObserver.onNext(protoList)
         responseObserver.onCompleted()
