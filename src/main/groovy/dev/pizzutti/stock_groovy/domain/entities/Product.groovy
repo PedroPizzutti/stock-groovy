@@ -25,7 +25,7 @@ class Product {
         this.createdAt = createdAt ?: LocalDateTime.now()
     }
 
-    private void validateCreate(String name, String codBar, String storageArea, Long quantity) {
+    private void validateCreate(String name, String codBar, String storageAre, Long quantity) {
         List<String> errors = []
 
         if (name.length() <= 3) {
