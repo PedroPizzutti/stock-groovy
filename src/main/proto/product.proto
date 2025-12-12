@@ -12,26 +12,26 @@ import "google/protobuf/timestamp.proto";
 message ProductProtoResponse {
     string id = 1;
     string name = 2;
-    string codBar = 3;
-    string storageArea = 4;
+    string cod_bar = 3;
+    string storage_area = 4;
     int64 quantity = 5;
-    google.protobuf.Timestamp createdAt = 6;
+    google.protobuf.Timestamp created_at = 6;
 }
 
 message CreateProductProtoRequest {
     string name = 1;
-    string codBar = 2;
-    string storageArea = 3;
+    string cod_bar = 2;
+    string storage_area = 3;
     int64 quantity = 4;
 }
 
 message UpdateProductProtoRequest {
     string id = 1;
     string name = 2;
-    string codBar = 3;
-    string storageArea = 4;
+    string cod_bar = 3;
+    string storage_area = 4;
     int64 quantity = 5;
-    google.protobuf.Timestamp createdAt = 6;
+    google.protobuf.Timestamp created_at = 6;
 }
 
 message DeleteProductProtoRequest {
