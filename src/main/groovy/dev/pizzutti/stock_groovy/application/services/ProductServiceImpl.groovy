@@ -53,7 +53,7 @@ class ProductServiceImpl implements ProductService {
 
     private void validateUniqueCodBar(String codBar) {
         if (productRepository.findByCodBar(codBar).isPresent()) {
-            throw new ProductException(["Product with 'codBar' '${codBar}' already exists"])
+            throw new ProductException(["Product with 'codBar' '${codBar}' already exists".toString()])
         }
     }
 }

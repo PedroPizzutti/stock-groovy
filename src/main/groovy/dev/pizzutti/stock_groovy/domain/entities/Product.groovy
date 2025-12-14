@@ -18,7 +18,7 @@ class Product {
             LocalDateTime createdAt = null) {
         validateCreate(name, codBar, storageArea, quantity)
         this.id = id ?: UUID.randomUUID()
-        this.name = name
+        this.name = name.toUpperCase()
         this.codBar = codBar
         this.storageArea = storageArea
         this.quantity = quantity
