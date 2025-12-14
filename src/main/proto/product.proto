@@ -9,6 +9,14 @@ option java_outer_classname = "ProductProto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 
+service ProductService {
+    rpc create(CreateProductProtoRequest) returns (ProductProtoResponse);
+    rpc update(UpdateProductProtoRequest) returns (ProductProtoResponse);
+    rpc delete(DeleteProductProtoRequest) returns (google.protobuf.Empty);
+    rpc get(GetProductProtoRequest) returns (ProductProtoResponse);
+    rpc list(google.protobuf.Empty) returns (ListProductsProtoResponse);
+}
+
 message ProductProtoResponse {
     string id = 1;
     string name = 2;
@@ -44,12 +52,4 @@ message GetProductProtoRequest {
 
 message ListProductsProtoResponse {
     repeated ProductProtoResponse products = 1;
-}
-
-service ProductService {
-    rpc create(CreateProductProtoRequest) returns (ProductProtoResponse);
-    rpc update(UpdateProductProtoRequest) returns (ProductProtoResponse);
-    rpc delete(DeleteProductProtoRequest) returns (google.protobuf.Empty);
-    rpc get(GetProductProtoRequest) returns (ProductProtoResponse);
-    rpc list(google.protobuf.Empty) returns (ListProductsProtoResponse);
 }
