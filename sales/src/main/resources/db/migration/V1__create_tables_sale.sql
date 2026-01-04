@@ -5,7 +5,7 @@ CREATE TABLE product (
     name VARCHAR(150) NOT NULL,
     description VARCHAR(1000) NOT NULL,
     cod_bar VARCHAR(13) NOT NULL,
-    value DECIMAL(19,2) NOT NULL
+    price DECIMAL(19,2) NOT NULL
 );
 
 CREATE TABLE sale (
@@ -22,7 +22,7 @@ CREATE TABLE sale_product (
     sale_id BINARY(16) NOT NULL,
     product_id BINARY(16) NOT NULL,
     quantity INT NOT NULL,
-    value DECIMAL(19,2) NOT NULL,
+    price DECIMAL(19,2) NOT NULL,
 
     CONSTRAINT fk_sale_id FOREIGN KEY (sale_id) REFERENCES sale(id) ON DELETE CASCADE,
     CONSTRAINT fk_product_id FOREIGN KEY (product_id) REFERENCES product(id)

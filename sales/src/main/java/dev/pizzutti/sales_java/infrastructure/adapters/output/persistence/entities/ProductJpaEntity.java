@@ -1,5 +1,6 @@
 package dev.pizzutti.sales_java.infrastructure.adapters.output.persistence.entities;
 
+import dev.pizzutti.sales_java.domain.entities.Product;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,8 +30,8 @@ public class ProductJpaEntity {
     @Column(name = "cod_bar", length = 13, nullable = false)
     private String codBar;
 
-    @Column(name = "value", precision = 19, scale = 2, nullable = false)
-    private BigDecimal value;
+    @Column(name = "price", precision = 19, scale = 2, nullable = false)
+    private BigDecimal price;
 
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
@@ -38,8 +39,30 @@ public class ProductJpaEntity {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
+    @PrePersist
+    void prePersist() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
+
     @PreUpdate
     void preUpdate() {
         this.updatedAt = LocalDateTime.now();
+    }
+
+    public static ProductJpaEntity fromDomain(Product product) {
+        return new ProductJpaEntity(
+                product.getId(),
+                product.getName(),
+                product.getDescription(),
+                product.getCodBar(),
+                product.getPrice(),
+                null,
+                null
+        );
+    }
+
+    public Product toDomain() {
+        return new Product(id, name, description, codBar, price);
     }
 }

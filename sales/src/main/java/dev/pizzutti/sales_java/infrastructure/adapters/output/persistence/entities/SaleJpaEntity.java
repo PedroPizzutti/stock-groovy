@@ -1,5 +1,6 @@
 package dev.pizzutti.sales_java.infrastructure.adapters.output.persistence.entities;
 
+import dev.pizzutti.sales_java.domain.entities.Sale;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -38,9 +39,30 @@ public class SaleJpaEntity {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
+    @PrePersist
+    void prePersist() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
+
     @PreUpdate
     void preUpdate() {
         this.updatedAt = LocalDateTime.now();
     }
+
+    public static SaleJpaEntity fromDomain(Sale sale) {
+        SaleJpaEntity entity = new SaleJpaEntity();
+        entity.setId(sale.getId());
+        entity.setBuyerEmail(sale.getBuyerEmail());
+        var listItems = sale.getItems().stream().map(item -> SaleProductJpaEntity.fromDomain(item, entity)).toList();
+        entity.setItems(listItems);
+        return entity;
+    }
+
+    public Sale toDomain() {
+        var listItems = items.stream().map(SaleProductJpaEntity::toDomain).toList();
+        return new Sale(id, buyerEmail, listItems);
+    }
+
 }
 

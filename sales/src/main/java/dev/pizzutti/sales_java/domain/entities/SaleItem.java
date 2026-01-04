@@ -11,18 +11,18 @@ import java.util.UUID;
 public class SaleItem {
     private UUID id;
     private Product product;
-    private BigDecimal value;
+    private BigDecimal price;
     private Integer quantity;
 
-    public SaleItem(UUID id, Product product, BigDecimal value, Integer quantity) {
-        this.id = id;
+    public SaleItem(UUID id, Product product, Integer quantity) {
+        this.id = id != null ? id : UUID.randomUUID();
         this.product = product;
-        this.value = value;
+        this.price = product.getPrice();
         this.quantity = quantity;
     }
 
     public BigDecimal getTotal() {
-        return value.multiply(BigDecimal.valueOf(quantity));
+        return price.multiply(BigDecimal.valueOf(quantity));
     }
 
 }

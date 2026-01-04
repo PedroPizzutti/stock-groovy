@@ -15,10 +15,10 @@ public class Sale {
     private String buyerEmail;
     private List<SaleItem> items;
 
-    public Sale(UUID id, String buyerEmail, BigDecimal total, List<SaleItem> items) {
+    public Sale(UUID id, String buyerEmail, List<SaleItem> items) {
         this.id = id != null ? id : UUID.randomUUID();
         this.buyerEmail = buyerEmail;
-        this.items = Sale.this.items != null ? items : new ArrayList<>();
+        this.items = items != null ? items : new ArrayList<>();
     }
 
     public BigDecimal getTotal() {

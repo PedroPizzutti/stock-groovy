@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
@@ -14,15 +13,13 @@ public class Product {
     private String name;
     private String description;
     private String codBar;
-    private BigDecimal value;
-    private LocalDateTime createdAt;
+    private BigDecimal price;
 
-    public Product(UUID id, String name, String description, String codBar, BigDecimal value, LocalDateTime createdAt) {
+    public Product(UUID id, String name, String description, String codBar, BigDecimal price) {
         this.id = id != null ? id : UUID.randomUUID();
         this.name = name.toUpperCase();
         this.description = description.toUpperCase();
         this.codBar = codBar;
-        this.value = value;
-        this.createdAt = createdAt != null ? createdAt : LocalDateTime.now();
+        this.price = price;
     }
 }

@@ -2,7 +2,7 @@ package dev.pizzutti.sales_java.infrastructure.adapters.output.persistence.imp;
 
 import dev.pizzutti.sales_java.domain.entities.Sale;
 import dev.pizzutti.sales_java.domain.ports.output.SaleRepository;
-import dev.pizzutti.sales_java.infrastructure.adapters.output.persistence.mappers.SaleJpaMapper;
+import dev.pizzutti.sales_java.infrastructure.adapters.output.persistence.entities.SaleJpaEntity;
 import dev.pizzutti.sales_java.infrastructure.adapters.output.persistence.repositories.SaleJpaRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,16 +12,14 @@ import org.springframework.transaction.annotation.Transactional;
 public class SaleRepositoryImp implements SaleRepository {
 
     private final SaleJpaRepository repository;
-    private final SaleJpaMapper mapper;
 
-    public SaleRepositoryImp(SaleJpaRepository repository,
-                             SaleJpaMapper mapper) {
+    public SaleRepositoryImp(SaleJpaRepository repository) {
         this.repository = repository;
-        this.mapper = mapper;
     }
 
     @Override
     public Sale save(Sale sale) {
-        return mapper.toDomain(repository.save(mapper.toEntity(sale)));
+        var saved = repository.save(SaleJpaEntity.fromDomain(sale));
+        return saved.toDomain();
     }
 }
