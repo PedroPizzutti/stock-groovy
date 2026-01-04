@@ -11,6 +11,8 @@ CREATE TABLE sale_product (
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     sale_id BINARY(16) NOT NULL,
     product_id BINARY(16) NOT NULL,
+    quantity INT NOT NULL,
+    value DECIMAL(19,2) NOT NULL,
 
     CONSTRAINT fk_sale_id FOREIGN KEY (sale_id) REFERENCES sale(id) ON DELETE CASCADE,
     CONSTRAINT fk_product_id FOREIGN KEY (product_id) REFERENCES product(id)
