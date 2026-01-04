@@ -29,6 +29,7 @@ public class SaleJpaEntity {
         cascade = CascadeType.ALL,
         orphanRemoval = true
     )
+    @Builder.Default
     private List<SaleProductJpaEntity> items = new ArrayList<>();
 
     @Column(name = "created_at", updatable = false)
