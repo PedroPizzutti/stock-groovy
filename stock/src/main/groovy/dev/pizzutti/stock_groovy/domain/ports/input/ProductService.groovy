@@ -8,4 +8,5 @@ interface ProductService {
     Product getById(UUID id);
     List<Product> listAll();
     void delete(UUID id);
+    void reserve(String codBar, Long quantity);
 }

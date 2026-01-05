@@ -9,12 +9,15 @@ import dev.pizzutti.stock_groovy.infrastructure.input.grpc.proto.GetProductProto
 import dev.pizzutti.stock_groovy.infrastructure.input.grpc.proto.ListProductsProtoResponse
 import dev.pizzutti.stock_groovy.infrastructure.input.grpc.proto.ProductProtoResponse
 import dev.pizzutti.stock_groovy.infrastructure.input.grpc.proto.ProductServiceGrpc
+import dev.pizzutti.stock_groovy.infrastructure.input.grpc.proto.ReserveProductProtoRequest
 import dev.pizzutti.stock_groovy.infrastructure.input.grpc.proto.UpdateProductProtoRequest
 import io.grpc.stub.StreamObserver
+import org.hibernate.sql.ast.tree.expression.Over
 import org.springframework.stereotype.Service
 
 import java.time.LocalDateTime
 import java.time.ZoneOffset
+import java.util.stream.Stream
 
 @Service
 class ProductGrpcImpl extends ProductServiceGrpc.ProductServiceImplBase {
@@ -23,6 +26,13 @@ class ProductGrpcImpl extends ProductServiceGrpc.ProductServiceImplBase {
 
     ProductGrpcImpl(ProductService productService) {
         this.productService = productService
+    }
+
+    @Override
+    void reserve(ReserveProductProtoRequest request, StreamObserver<Empty> responseObserver) {
+        productService.reserve(request.codBar, request.quantity)
+        responseObserver.onNext(Empty.getDefaultInstance())
+        responseObserver.onCompleted()
     }
 
     @Override

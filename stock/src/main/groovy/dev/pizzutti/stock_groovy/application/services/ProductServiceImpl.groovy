@@ -51,6 +51,23 @@ class ProductServiceImpl implements ProductService {
         productRepository.delete(persistedProduct.id)
     }
 
+    @Override
+    void reserve(String codBar, Long quantity) {
+        int chance = new Random().nextInt(10);
+        if (chance < 1) {
+            throw new ProductException(["service unavailable".toString()]);
+        }
+//        var product = productRepository.findByCodBar(codBar)
+//                .orElseThrow({ new ProductException(["Product with codBar '${codBar}' not found"]) });
+//
+//        if (product.getQuantity() < quantity) {
+//           throw new ProductException(["Not enough product with codBar '${codBar}'"])
+//        }
+//
+//        product.setQuantity(product.getQuantity() - quantity);
+//        productRepository.save(product);
+    }
+
     private void validateUniqueCodBar(String codBar) {
         if (productRepository.findByCodBar(codBar).isPresent()) {
             throw new ProductException(["Product with 'codBar' '${codBar}' already exists".toString()])
