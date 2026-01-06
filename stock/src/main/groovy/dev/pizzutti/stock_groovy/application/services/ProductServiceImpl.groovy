@@ -54,7 +54,8 @@ class ProductServiceImpl implements ProductService {
     @Override
     void reserve(String codBar, Long quantity) {
         int chance = new Random().nextInt(10);
-        if (chance < 1) {
+        if (chance < 9) {
+            Thread.sleep(2000);
             throw new ProductException(["service unavailable".toString()]);
         }
 //        var product = productRepository.findByCodBar(codBar)

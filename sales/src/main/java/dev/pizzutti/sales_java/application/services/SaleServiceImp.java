@@ -32,7 +32,14 @@ public class SaleServiceImp implements SaleService {
 
     @Override
     public Sale makeSale(Sale sale) {
-        sale.getItems().forEach(item -> stockCallable.reserve(item.getProduct().getCodBar(), item.getQuantity()));
+        sale.getItems().forEach(item -> {
+//            stockCallable.reserveCircuitBreaker(item.getProduct().getCodBar(), item.getQuantity());
+//            stockCallable.reserveRetry(item.getProduct().getCodBar(), item.getQuantity());
+            stockCallable.reserveTimeLimiter(item.getProduct().getCodBar(), item.getQuantity()).join();
+//            stockCallable.reserveBulkhead(item.getProduct().getCodBar(), item.getQuantity());
+//            stockCallable.reserveBulkheadThreadPool(item.getProduct().getCodBar(), item.getQuantity()).join();
+//            stockCallable.reserveRateLimiter(item.getProduct().getCodBar(), item.getQuantity());
+        });
         return saleRepository.save(sale);
     }
 }
